@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronos Academy — The World's First Institution of Temporal Education</title>
+<meta name="description" content="Chronos Academy: Eight campuses across time. Sixteen legendary faculty. One mission — to learn from every era of human history.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CHRONOS ACADEMY — Complete Stylesheet
+   ============================================ */
+
+:root {
+  --color-basalt: #1C1C2E;
+  --color-obsidian: #2A2A3D;
+  --color-meridian-gold: #C5952A;
+  --color-amber-glow: #E8B84B;
+  --color-parchment: #F5F0E6;
+  --color-frost: #FAFAF8;
+  --color-rift-stone: #6B6B7B;
+  --color-ash: #D1CFC7;
+  --color-paradox-red: #A83232;
+  --color-archive-sage: #4A7C59;
+
+  --color-campus-alexandria: #E8D5A3;
+  --color-campus-shaolin: #7A8B7A;
+  --color-campus-timbuktu: #C4883A;
+  --color-campus-florence: #8C2F2F;
+  --color-campus-varanasi: #D4882A;
+  --color-campus-manchester: #8B4513;
+  --color-campus-nairobi: #2A8B7A;
+  --color-campus-pangaea: #3D6B3D;
+
+  --bg-primary: var(--color-basalt);
+  --bg-surface: var(--color-obsidian);
+  --text-primary: var(--color-parchment);
+  --text-secondary: var(--color-ash);
+  --text-accent: var(--color-meridian-gold);
+  --border-default: #3A3A4D;
+
+  --font-heading: 'Cinzel', 'Georgia', serif;
+  --font-body: 'Libre Baskerville', 'Georgia', serif;
+  --font-data: 'Orbitron', 'Courier New', monospace;
+
+  --shadow-md: 0 4px 12px rgba(28, 28, 46, 0.4);
+  --shadow-lg: 0 8px 32px rgba(28, 28, 46, 0.5);
+  --shadow-glow: 0 0 20px rgba(197, 149, 42, 0.25);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ---- Typography ---- */
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+h1 { font-weight: 900; }
+h2 { font-weight: 700; font-size: 2.369rem; margin-bottom: 1rem; }
+h3 { font-weight: 700; font-size: 1.777rem; }
+h4 { font-weight: 400; font-size: 1.333rem; }
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.data-label {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---- Utility ---- */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-gold { color: var(--color-meridian-gold); }
+.text-center { text-align: center; }
+
+section {
+  padding: 6rem 0;
+}
+
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--color-meridian-gold);
+  margin: 1.5rem auto 1rem;
+  border: none;
+}
+
+/* ---- Scroll Animations ---- */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Navigation ---- */
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(28, 28, 46, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-default);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.nav-bar.nav-transparent {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-meridian-gold);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav-logo span {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-logo span { display: inline; }
+}
+
+.nav-links {
+  display: none;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .nav-links { display: flex; }
+  .hamburger { display: none !important; }
+}
+
+.nav-links a {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-meridian-gold);
+}
+
+.nav-links .btn-apply-nav {
+  background: var(--color-meridian-gold);
+  color: var(--color-basalt);
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.nav-links .btn-apply-nav:hover {
+  background: var(--color-amber-glow);
+  color: var(--color-basalt);
+}
+
+/* Hamburger */
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 301;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-parchment);
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu */
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 46, 0.97);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu a {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-parchment);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover {
+  color: var(--color-meridian-gold);
+}
+
+.mobile-menu .btn-apply-mobile {
+  background: var(--color-meridian-gold);
+  color: var(--color-basalt);
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   SECTION 1: HERO
+   ============================================ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(197, 149, 42, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(42, 42, 61, 0.8) 0%, transparent 70%),
+    linear-gradient(180deg, var(--color-basalt) 0%, #141422 50%, var(--color-basalt) 100%);
+  z-index: 0;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -60%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 149, 42, 0.15) 0%, rgba(197, 149, 42, 0.05) 40%, transparent 70%);
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: translate(-50%, -60%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -60%) scale(1.15); opacity: 1; }
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  transform: translate(-50%, -60%);
+  border-radius: 50%;
+  border: 1px solid rgba(197, 149, 42, 0.2);
+  animation: ring-pulse 4s ease-in-out infinite 0.5s;
+}
+
+@keyframes ring-pulse {
+  0%, 100% { transform: translate(-50%, -60%) scale(1); opacity: 0.3; }
+  50% { transform: translate(-50%, -60%) scale(1.3); opacity: 0.6; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero-pre {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--color-meridian-gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-parchment);
+  margin-bottom: 0.75rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.5s forwards;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
+}
+
+.hero-motto {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--color-meridian-gold);
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.9s forwards;
+}
+
+.hero-motto-en {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-rift-stone);
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1s forwards;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.1s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-primary, .btn-secondary {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background: var(--color-meridian-gold);
+  color: var(--color-basalt);
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  background: var(--color-amber-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-meridian-gold);
+  border-color: var(--color-meridian-gold);
+}
+
+.btn-secondary:hover {
+  background: rgba(197, 149, 42, 0.1);
+  box-shadow: var(--shadow-glow);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: bounce 2s infinite;
+  color: var(--color-rift-stone);
+  font-size: 1.5rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ============================================
+   SECTION 2: ORIGIN STORY
+   ============================================ */
+
+#origin {
+  background: var(--bg-primary);
+}
+
+.origin-narrative {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+.origin-narrative p {
+  margin-bottom: 1.5rem;
+}
+
+.origin-narrative strong {
+  color: var(--color-parchment);
+}
+
+.origin-quote {
+  border-left: 3px solid var(--color-meridian-gold);
+  padding: 1.5rem 2rem;
+  margin: 2.5rem auto;
+  max-width: 700px;
+  font-style: italic;
+  color: var(--color-parchment);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  background: rgba(197, 149, 42, 0.04);
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pillar-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.pillar-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+  color: var(--color-meridian-gold);
+}
+
+.pillar-card h4 {
+  color: var(--color-meridian-gold);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.pillar-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ============================================
+   SECTION 3: ERAS & CAMPUSES
+   ============================================ */
+
+#eras {
+  background: linear-gradient(180deg, var(--bg-primary) 0%, #1a1a2a 100%);
+}
+
+.campus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.campus-card {
+  background: var(--bg-surface);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.campus-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.campus-card-bar {
+  height: 4px;
+  transition: height 0.2s ease;
+}
+
+.campus-card:hover .campus-card-bar {
+  height: 6px;
+}
+
+.campus-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.campus-era-label {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.campus-card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-parchment);
+  margin-bottom: 0.5rem;
+}
+
+.campus-meta {
+  font-size: 0.8rem;
+  color: var(--color-rift-stone);
+  margin-bottom: 0.75rem;
+}
+
+.campus-discipline {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.campus-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.campus-difficulty {
+  font-size: 0.75rem;
+  color: var(--color-rift-stone);
+  margin-top: auto;
+}
+
+.campus-difficulty .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 3px;
+  background: var(--border-default);
+}
+
+.campus-difficulty .dot.filled {
+  background: currentColor;
+}
+
+/* ============================================
+   SECTION 4: FACULTY
+   ============================================ */
+
+#faculty {
+  background: var(--bg-primary);
+}
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.faculty-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.faculty-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.faculty-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.faculty-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  background: var(--color-obsidian);
+  border: 2px solid var(--color-meridian-gold);
+  color: var(--color-meridian-gold);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.faculty-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: var(--color-parchment);
+  margin-bottom: 0.2rem;
+}
+
+.faculty-title {
+  font-size: 0.75rem;
+  color: var(--color-meridian-gold);
+  line-height: 1.4;
+}
+
+.faculty-meta {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  color: var(--color-rift-stone);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.faculty-quote {
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  border-left: 2px solid var(--color-meridian-gold);
+  padding-left: 0.75rem;
+  margin-top: auto;
+}
+
+/* ============================================
+   SECTION 5: ACADEMICS
+   ============================================ */
+
+#academics {
+  background: linear-gradient(180deg, #1a1a2a 0%, var(--bg-primary) 100%);
+}
+
+.degrees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.degree-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.degree-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.degree-abbr {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--color-meridian-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.degree-card h4 {
+  color: var(--color-parchment);
+  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+}
+
+.degree-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.degree-duration {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  color: var(--color-rift-stone);
+  letter-spacing: 0.04em;
+}
+
+.core-curriculum {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-meridian-gold);
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.core-curriculum h3 {
+  color: var(--color-meridian-gold);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.core-curriculum p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.core-courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  list-style: none;
+}
+
+.core-courses li {
+  font-size: 0.82rem;
+  color: var(--color-parchment);
+  padding: 0.75rem 1rem;
+  background: rgba(197, 149, 42, 0.06);
+  border-radius: 6px;
+  border-left: 3px solid var(--color-meridian-gold);
+}
+
+.core-courses li strong {
+  display: block;
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  color: var(--color-meridian-gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+/* ============================================
+   SECTION 6: STUDENT LIFE
+   ============================================ */
+
+#student-life {
+  background: var(--bg-primary);
+}
+
+.life-subsection {
+  margin-bottom: 3rem;
+}
+
+.life-subsection h3 {
+  color: var(--color-meridian-gold);
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.housing-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.housing-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.housing-card h4 {
+  color: var(--color-parchment);
+  margin-bottom: 0.5rem;
+}
+
+.housing-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.dorm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.dorm-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.dorm-item h5 {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--color-parchment);
+  margin-bottom: 0.25rem;
+}
+
+.dorm-item .dorm-era {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  color: var(--color-meridian-gold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dorm-item .dorm-vibe {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.club-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.club-card:hover {
+  transform: translateY(-3px);
+}
+
+.club-card h4 {
+  color: var(--color-parchment);
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.club-card .club-motto {
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--color-meridian-gold);
+  margin-bottom: 0.6rem;
+}
+
+.club-card p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.traditions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  list-style: none;
+}
+
+.traditions-list li {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.traditions-list li h4 {
+  color: var(--color-parchment);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.traditions-list li p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ============================================
+   SECTION 7: TEMPORAL OATH
+   ============================================ */
+
+#oath {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(197, 149, 42, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #141422 0%, var(--color-basalt) 50%, #141422 100%);
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.oath-label {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--color-meridian-gold);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+#oath h2 {
+  color: var(--color-parchment);
+  font-size: clamp(1.5rem, 4vw, 2.369rem);
+  margin-bottom: 3rem;
+}
+
+.oath-text {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.oath-text p {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 2;
+  color: var(--color-parchment);
+  margin-bottom: 1rem;
+}
+
+.oath-text .oath-final {
+  color: var(--color-meridian-gold);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  margin-top: 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ============================================
+   SECTION 8: APPLY CTA
+   ============================================ */
+
+#apply {
+  background: var(--bg-primary);
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+#apply h2 {
+  font-size: clamp(1.8rem, 4vw, 2.369rem);
+}
+
+.apply-quote {
+  max-width: 700px;
+  margin: 2rem auto;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  border-left: 3px solid var(--color-meridian-gold);
+  padding: 1rem 1.5rem;
+  text-align: left;
+  background: rgba(197, 149, 42, 0.03);
+}
+
+.apply-quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-rift-stone);
+  font-style: normal;
+}
+
+.apply-cta-wrap {
+  margin-top: 2.5rem;
+}
+
+.btn-large {
+  font-size: 1rem;
+  padding: 1rem 3rem;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.site-footer {
+  background: #141422;
+  border-top: 1px solid var(--border-default);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--color-meridian-gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-links a {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--color-meridian-gold);
+}
+
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-meridian-gold);
+  margin: 0 auto 1.5rem;
+  border: none;
+}
+
+.footer-motto {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--color-meridian-gold);
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.footer-motto-en {
+  font-size: 0.8rem;
+  color: var(--color-rift-stone);
+  margin-bottom: 1.5rem;
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  color: var(--color-rift-stone);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  section { padding: 4rem 0; }
+  h2 { font-size: 1.8rem; }
+  .container { padding: 0 1.25rem; }
+  .campus-grid { grid-template-columns: 1fr; }
+  .faculty-grid { grid-template-columns: 1fr; }
+  .degrees-grid { grid-template-columns: 1fr; }
+  .core-courses { grid-template-columns: 1fr; }
+  .clubs-grid { grid-template-columns: 1fr; }
+  .traditions-list { grid-template-columns: 1fr; }
+  .housing-options { grid-template-columns: 1fr; }
+  .dorm-grid { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  #oath { padding: 5rem 1.5rem; }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .campus-grid { grid-template-columns: repeat(2, 1fr); }
+  .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .campus-grid { grid-template-columns: repeat(4, 1fr); }
+  .faculty-grid { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ======== NAVIGATION ======== -->
+<nav class="nav-bar nav-transparent" id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Chronos <span>Academy</span></a>
+    <ul class="nav-links">
+      <li><a href="#origin">Origin</a></li>
+      <li><a href="#eras">Eras</a></li>
+      <li><a href="#faculty">Faculty</a></li>
+      <li><a href="#academics">Academics</a></li>
+      <li><a href="#student-life">Student Life</a></li>
+      <li><a href="#apply" class="btn-apply-nav">Apply</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#origin" class="mobile-link">Origin</a>
+  <a href="#eras" class="mobile-link">Eras</a>
+  <a href="#faculty" class="mobile-link">Faculty</a>
+  <a href="#academics" class="mobile-link">Academics</a>
+  <a href="#student-life" class="mobile-link">Student Life</a>
+  <a href="#oath" class="mobile-link">The Oath</a>
+  <a href="#apply" class="btn-apply-mobile mobile-link">Apply Now</a>
+</div>
+
+<!-- ======== SECTION 1: HERO ======== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-pre">Est. 1953 &mdash; Thingvellir, Iceland</p>
+    <h1>Chronos Academy</h1>
+    <p class="hero-tagline">The World's First Institution of Temporal Education</p>
+    <p class="hero-motto">"Tempus docet. Nos discimus."</p>
+    <p class="hero-motto-en">Time teaches. We learn.</p>
+    <div class="hero-ctas">
+      <a href="#origin" class="btn-primary">Explore the Academy</a>
+      <a href="#apply" class="btn-secondary">Apply Now</a>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">&#8964;</div>
+</section>
+
+<!-- ======== SECTION 2: ORIGIN STORY ======== -->
+<section id="origin">
+  <div class="container">
+    <div class="text-center fade-in">
+      <h2>It Started with Eleven Seconds</h2>
+      <hr class="section-divider">
+      <p class="section-subtitle">The founding story of the world's most extraordinary academy</p>
+    </div>
+
+    <div class="origin-narrative fade-in">
+      <p>On the morning of September 10, 1923, the Great Kanto Earthquake reduced Tokyo to rubble and ash. Across the world in Cambridge, England, a physicist named <strong>Dr. Elara Voss</strong> stood in her basement laboratory, staring at a seismograph needle that had gone impossibly still &mdash; not because the tremors had stopped, but because, for exactly eleven seconds, <em>time itself had paused</em>.</p>
+
+      <p>Voss spent the next three decades trying to reproduce the effect. She failed. Repeatedly. Magnificently. But she was not alone. Over the years, she gathered a small circle of collaborators &mdash; brilliant misfits who called themselves <strong>The Horologists</strong>: <strong>Professor Kofi Ansah</strong>, a Ghanaian mathematician; <strong>Dr. Yuki Tanaka</strong>, a Japanese quantum theorist and survivor of the 1923 earthquake itself; <strong>Siobhan Carraig</strong>, an Irish linguist and archaeologist; and <strong>Nikolai Oryol</strong>, a Russian engineer and clockmaker.</p>
+
+      <p>On March 20, 1953, at Thingvellir, Iceland &mdash; where the tectonic plates pull apart &mdash; they activated an array of 1,111 precisely tuned bismuth crystals. At 11:11 AM, a sphere of golden light opened in the chamber. Through it, they could see the same cliffs, but in a different season. They had opened a window six months into the past.</p>
+
+      <p>That night, gathered around a fire, Dr. Tanaka asked the question that changed everything: <em>"What if we don't use it to change the past &mdash; but to learn from it?"</em> On June 21, 1953, the five Horologists signed the <strong>Charter of Chronos</strong> and established Chronos Academy.</p>
+    </div>
+
+    <blockquote class="origin-quote fade-in">
+      "To safeguard the flow of time while illuminating the depth of human experience. Chronos Academy exists not to alter what was, but to understand what is &mdash; by witnessing the full tapestry of history with humility, rigor, and wonder."
+    </blockquote>
+
+    <div class="text-center fade-in">
+      <h3 class="text-gold">The Three Pillars</h3>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card fade-in">
+        <span class="pillar-icon">&#9681;</span>
+        <h4>Witness, Never Interfere</h4>
+        <p>The purpose of temporal travel is observation and understanding. The past is not ours to edit.</p>
+      </div>
+      <div class="pillar-card fade-in">
+        <span class="pillar-icon">&#9752;</span>
+        <h4>Knowledge in Service of the Future</h4>
+        <p>Everything learned through temporal study must ultimately serve the betterment of the present and future world.</p>
+      </div>
+      <div class="pillar-card fade-in">
+        <span class="pillar-icon">&#8734;</span>
+        <h4>Humility Before the Stream</h4>
+        <p>Time is larger than any institution, any technology, any individual. We exist at the sufferance of forces we do not fully comprehend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 3: ERAS & CAMPUSES ======== -->
+<section id="eras">
+  <div class="container">
+    <div class="text-center fade-in">
+      <h2>Eight Campuses Across Time</h2>
+      <hr class="section-divider">
+      <p class="section-subtitle">Each anchored to a moment of irreplaceable human achievement</p>
+    </div>
+
+    <div class="campus-grid">
+
+      <!-- Alexandria -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-alexandria);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-alexandria);">3rd Century BCE</div>
+          <h4>Alexandria</h4>
+          <div class="campus-meta">Ptolemaic Egypt</div>
+          <span class="campus-discipline" style="color: var(--color-campus-alexandria); background: rgba(232, 213, 163, 0.12);">Knowledge Systems</span>
+          <p class="campus-desc">Study in the Great Library complex. Hold in your hands texts that will be lost to fire, war, and neglect. The Scroll Hunt awaits.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-alexandria);" role="img" aria-label="Difficulty: Moderate (2 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span> Moderate
+          </div>
+        </div>
+      </div>
+
+      <!-- Shaolin -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-shaolin);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-shaolin);">7th Century CE</div>
+          <h4>Shaolin</h4>
+          <div class="campus-meta">Song Mountain, Tang Dynasty China</div>
+          <span class="campus-discipline" style="color: var(--color-campus-shaolin); background: rgba(122, 139, 122, 0.12);">Embodied Learning</span>
+          <p class="campus-desc">Train at the foot of Shaoshi Peak. The Seven-Day Mountain Retreat: one cave, one koan, one week to confront the limits of your mind.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-shaolin);" role="img" aria-label="Difficulty: High (3 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span> High
+          </div>
+        </div>
+      </div>
+
+      <!-- Timbuktu -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-timbuktu);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-timbuktu);">14th Century CE</div>
+          <h4>Timbuktu</h4>
+          <div class="campus-meta">Mali Empire</div>
+          <span class="campus-discipline" style="color: var(--color-campus-timbuktu); background: rgba(196, 136, 58, 0.12);">Trade &amp; Legal Studies</span>
+          <p class="campus-desc">One of the richest cities on Earth. Books worth their weight in gold. Join the Caravan Crossing through the southern Sahara.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-timbuktu);" role="img" aria-label="Difficulty: Moderate (2 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span> Moderate
+          </div>
+        </div>
+      </div>
+
+      <!-- Florence -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-florence);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-florence);">15th Century CE</div>
+          <h4>Florence</h4>
+          <div class="campus-meta">Italian Peninsula</div>
+          <span class="campus-discipline" style="color: var(--color-campus-florence); background: rgba(140, 47, 47, 0.12);">Art &amp; Political Science</span>
+          <p class="campus-desc">Leonardo, Botticelli, Machiavelli walk these streets. Receive a Commission from a real Florentine patron using period tools.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-florence);" role="img" aria-label="Difficulty: High (3 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span> High
+          </div>
+        </div>
+      </div>
+
+      <!-- Varanasi -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-varanasi);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-varanasi);">5th Century CE</div>
+          <h4>Varanasi</h4>
+          <div class="campus-meta">Gupta Empire, India</div>
+          <span class="campus-discipline" style="color: var(--color-campus-varanasi); background: rgba(212, 136, 42, 0.12);">Mathematics &amp; Philosophy</span>
+          <p class="campus-desc">Where zero was born. Defend a philosophical position in formal Sanskrit debate before Gupta-era logicians. The Great Debate awaits.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-varanasi);" role="img" aria-label="Difficulty: Very High (4 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span> Very High
+          </div>
+        </div>
+      </div>
+
+      <!-- Manchester -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-manchester);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-manchester);">19th Century CE</div>
+          <h4>Manchester</h4>
+          <div class="campus-meta">England</div>
+          <span class="campus-discipline" style="color: var(--color-campus-manchester); background: rgba(139, 69, 19, 0.12);">Industrial Studies</span>
+          <p class="campus-desc">The crucible of modernity. Spend five days on the Factory Floor. Understand industrialization in your bones, not from a textbook.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-manchester);" role="img" aria-label="Difficulty: Moderate (2 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span> Moderate
+          </div>
+        </div>
+      </div>
+
+      <!-- Tomorrow / Nairobi -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-nairobi);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-nairobi);">22nd Century CE</div>
+          <h4>Tomorrow (Nairobi)</h4>
+          <div class="campus-meta">East African Federation</div>
+          <span class="campus-discipline" style="color: var(--color-campus-nairobi); background: rgba(42, 139, 122, 0.12);">Future Studies &amp; Ethics</span>
+          <p class="campus-desc">Read your own century's obituary. The Retrospective: access the future's record of your era. Profoundly destabilizing. Mandatory counselling.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-nairobi);" role="img" aria-label="Difficulty: High (3 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span> High
+          </div>
+        </div>
+      </div>
+
+      <!-- Pangaea -->
+      <div class="campus-card fade-in">
+        <div class="campus-card-bar" style="background: var(--color-campus-pangaea);"></div>
+        <div class="campus-card-body">
+          <div class="campus-era-label" style="color: var(--color-campus-pangaea);">68 Million Years BCE</div>
+          <h4>Pangaea</h4>
+          <div class="campus-meta">Laramidia (Modern Montana)</div>
+          <span class="campus-discipline" style="color: var(--color-campus-pangaea); background: rgba(61, 107, 61, 0.12);">Deep-Time Ecology</span>
+          <p class="campus-desc">There is no architecture. T. rex is not an exhibit &mdash; it is a living predator. The Night Watch: one night, open air, no barriers. Extreme.</p>
+          <div class="campus-difficulty" style="color: var(--color-campus-pangaea);" role="img" aria-label="Difficulty: Extreme (4 of 4)">
+            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span> Extreme
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 4: FACULTY ======== -->
+<section id="faculty">
+  <div class="container">
+    <div class="text-center fade-in">
+      <h2>Learn from Every Generation</h2>
+      <hr class="section-divider">
+      <p class="section-subtitle">"We do not hire the best minds of a generation. We hire the best minds of every generation."</p>
+    </div>
+
+    <div class="faculty-grid">
+
+      <!-- 1. Einstein -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">AE</div>
+          <div>
+            <div class="faculty-name">Albert Einstein</div>
+            <div class="faculty-title">Distinguished Professor of Temporal Sciences</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Temporal Sciences &bull; 20th c. Zurich</div>
+        <div class="faculty-quote">"Imagination is more important than knowledge &mdash; especially when you've left your textbook in the 18th century."</div>
+      </div>
+
+      <!-- 2. Hypatia -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">HY</div>
+          <div>
+            <div class="faculty-name">Hypatia of Alexandria</div>
+            <div class="faculty-title">Dean of Natural Sciences &amp; Medicine</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Natural Sciences &bull; ~400 CE Alexandria</div>
+        <div class="faculty-quote">"Reserve your right to think, for even to think wrongly is better than not to think at all &mdash; though please do show your work on the final."</div>
+      </div>
+
+      <!-- 3. Da Vinci -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">LV</div>
+          <div>
+            <div class="faculty-name">Leonardo da Vinci</div>
+            <div class="faculty-title">Chair of Innovation &amp; Engineering</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Engineering / Arts &bull; ~1500 Florence</div>
+        <div class="faculty-quote">"Simplicity is the ultimate sophistication &mdash; which is why your semester project should be no more than seven hundred pages."</div>
+      </div>
+
+      <!-- 4. Curie -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">MC</div>
+          <div>
+            <div class="faculty-name">Marie Curie</div>
+            <div class="faculty-title">Professor of Natural Sciences &amp; Temporal Radiation</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Natural Sciences &bull; ~1903 Paris</div>
+        <div class="faculty-quote">"Nothing in life is to be feared, it is only to be understood &mdash; now put on your lead apron and stop complaining."</div>
+      </div>
+
+      <!-- 5. Sun Tzu -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">ST</div>
+          <div>
+            <div class="faculty-name">Sun Tzu</div>
+            <div class="faculty-title">Professor of Strategy &amp; Leadership</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Strategy &bull; ~500 BCE Zhou Dynasty</div>
+        <div class="faculty-quote">"Every battle is won before it is fought &mdash; especially midterms, so start studying now."</div>
+      </div>
+
+      <!-- 6. Kahlo -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">FK</div>
+          <div>
+            <div class="faculty-name">Frida Kahlo</div>
+            <div class="faculty-title">Professor of Arts &amp; Expression</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Arts &bull; ~1940 Mexico City</div>
+        <div class="faculty-quote">"I paint my own reality. The only thing I know is that I paint because I need to &mdash; and because this department has a 'publish or perish' policy."</div>
+      </div>
+
+      <!-- 7. Tesla -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">NT</div>
+          <div>
+            <div class="faculty-name">Nikola Tesla</div>
+            <div class="faculty-title">Professor of Innovation &amp; Engineering</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Engineering &bull; ~1895 New York</div>
+        <div class="faculty-quote">"The present is theirs; the future, for which I really worked, is mine &mdash; and also next semester's, if the tenure committee cooperates."</div>
+      </div>
+
+      <!-- 8. Cleopatra -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">CL</div>
+          <div>
+            <div class="faculty-name">Cleopatra VII</div>
+            <div class="faculty-title">Professor of Strategy &amp; Leadership</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Strategy / Philosophy &bull; ~45 BCE Alexandria</div>
+        <div class="faculty-quote">"I will not be triumphed over &mdash; nor will I accept late submissions without a note from the Temporal Affairs office."</div>
+      </div>
+
+      <!-- 9. Lovelace -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">AL</div>
+          <div>
+            <div class="faculty-name">Ada Lovelace</div>
+            <div class="faculty-title">Associate Professor of Innovation &amp; Engineering</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Engineering &bull; ~1843 London</div>
+        <div class="faculty-quote">"The Analytical Engine weaves algebraic patterns just as the Jacquard loom weaves flowers and leaves &mdash; and your code, currently, weaves neither. Revise."</div>
+      </div>
+
+      <!-- 10. Aurelius -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">MA</div>
+          <div>
+            <div class="faculty-name">Marcus Aurelius</div>
+            <div class="faculty-title">Chair of Applied Philosophy &amp; Ethics</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Philosophy &bull; ~170 CE Rome</div>
+        <div class="faculty-quote">"Waste no more time arguing about what a good student should be. Be one."</div>
+      </div>
+
+      <!-- 11. Murasaki -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">MS</div>
+          <div>
+            <div class="faculty-name">Murasaki Shikibu</div>
+            <div class="faculty-title">Professor of Arts &amp; Expression</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Arts &bull; ~1005 CE Kyoto</div>
+        <div class="faculty-quote">"The truth is to be found in the fiction &mdash; which is why your personal essay reads false and your short story reads true. Reverse them."</div>
+      </div>
+
+      <!-- 12. Ibn al-Haytham -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">IH</div>
+          <div>
+            <div class="faculty-name">Ibn al-Haytham</div>
+            <div class="faculty-title">Professor of Natural Sciences &amp; Temporal Optics</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Natural Sciences &bull; ~1020 CE Cairo</div>
+        <div class="faculty-quote">"The duty of the man who investigates the writings of scientists is not to trust the authority of the textbook, but to subject it to experiment."</div>
+      </div>
+
+      <!-- 13. Tubman -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">HT</div>
+          <div>
+            <div class="faculty-name">Harriet Tubman</div>
+            <div class="faculty-title">Professor of Strategy &amp; Leadership</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Strategy &bull; ~1855 Eastern U.S.</div>
+        <div class="faculty-quote">"I freed a thousand slaves. I could have freed a thousand more if only they knew they were enrolled &mdash; I mean, enslaved."</div>
+      </div>
+
+      <!-- 14. Pythagoras -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">PY</div>
+          <div>
+            <div class="faculty-name">Pythagoras</div>
+            <div class="faculty-title">Professor of Temporal Sciences</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Temporal Sciences / Philosophy &bull; ~520 BCE Croton</div>
+        <div class="faculty-quote">"There is geometry in the humming of the strings, there is music in the spacing of the spheres &mdash; and there will be consequences in the spacing of your citations."</div>
+      </div>
+
+      <!-- 15. Wollstonecraft -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">MW</div>
+          <div>
+            <div class="faculty-name">Mary Wollstonecraft</div>
+            <div class="faculty-title">Associate Professor of Applied Philosophy &amp; Ethics</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Philosophy &bull; ~1792 London</div>
+        <div class="faculty-quote">"I do not wish women to have power over men, but over themselves &mdash; and over their own thesis deadlines, which several of you are currently failing to manage."</div>
+      </div>
+
+      <!-- 16. Ramanujan -->
+      <div class="faculty-card fade-in">
+        <div class="faculty-card-header">
+          <div class="faculty-avatar">SR</div>
+          <div>
+            <div class="faculty-name">Srinivasa Ramanujan</div>
+            <div class="faculty-title">Associate Professor of Temporal Sciences</div>
+          </div>
+        </div>
+        <div class="faculty-meta">Temporal Sciences &bull; ~1916 Cambridge</div>
+        <div class="faculty-quote">"An equation means nothing to me unless it expresses a thought of God &mdash; or at minimum earns partial credit on the exam."</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 5: ACADEMICS ======== -->
+<section id="academics">
+  <div class="container">
+    <div class="text-center fade-in">
+      <h2>Four Paths Through Time</h2>
+      <hr class="section-divider">
+      <p class="section-subtitle">Degree programs designed for those who refuse to study history from a distance</p>
+    </div>
+
+    <div class="degrees-grid">
+
+      <div class="degree-card fade-in">
+        <div class="degree-abbr">B.T.E.</div>
+        <h4>Temporal Engineering</h4>
+        <p>Design, maintenance, and theory of time-displacement technology. Graduates are certified to operate Slip Gates, stabilize temporal anomalies, and construct chrono-shielded environments.</p>
+        <div class="degree-duration">4 Years &bull; 16 Courses</div>
+      </div>
+
+      <div class="degree-card fade-in">
+        <div class="degree-abbr">B.C.D.</div>
+        <h4>Cross-Era Diplomacy</h4>
+        <p>Negotiation, governance, and peacekeeping across historical periods. Graduates serve as temporal ambassadors, mediating between era-locked civilizations.</p>
+        <div class="degree-duration">4 Years &bull; 16 Courses</div>
+      </div>
+
+      <div class="degree-card fade-in">
+        <div class="degree-abbr">M.P.S.</div>
+        <h4>Paradox Sciences</h4>
+        <p>Advanced theoretical chronophysics, grandfather paradox resolution, and multiverse branching analysis. Graduates work in the Paradox Containment Division.</p>
+        <div class="degree-duration">2 Years &bull; Graduate &bull; 8 Courses + Thesis</div>
+      </div>
+
+      <div class="degree-card fade-in">
+        <div class="degree-abbr">B.C.S.</div>
+        <h4>Chrono-Cultural Studies</h4>
+        <p>Art, language, literature, and cultural practice across all human eras. Graduates become curators, translators, cultural preservationists, or era-specific creative practitioners.</p>
+        <div class="degree-duration">4 Years &bull; 16 Courses</div>
+      </div>
+
+    </div>
+
+    <div class="core-curriculum fade-in">
+      <h3>Core Temporal Curriculum</h3>
+      <p>Required of all students before any temporal excursion. No exceptions.</p>
+      <ul class="core-courses">
+        <li><strong>PHIL 110</strong> Ethics of Temporal Interference</li>
+        <li><strong>HIST 101</strong> Surviving Your First Displacement</li>
+        <li><strong>DIPL 200</strong> The Non-Interference Charter</li>
+        <li><strong>PARA 150</strong> Introduction to Chronophysics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 6: STUDENT LIFE ======== -->
+<section id="student-life">
+  <div class="container">
+    <div class="text-center fade-in">
+      <h2>Life Across Seven Eras</h2>
+      <hr class="section-divider">
+      <p class="section-subtitle">"You chose a university where Monday could literally be in a different century than Friday."</p>
+    </div>
+
+    <!-- Housing -->
+    <div class="life-subsection fade-in">
+      <h3>Housing</h3>
+      <div class="housing-options">
+        <div class="housing-card">
+          <h4>Temporal Pods</h4>
+          <p>First-year studio apartments in stabilized null-time. Clustered in groups of eight around shared common rooms called Spokes. Deliberately spartan. Your Spoke-mates become your first real social circle.</p>
+        </div>
+        <div class="housing-card">
+          <h4>Era Dormitories</h4>
+          <p>Starting second year, live fully immersed in one of seven anchored-era residential halls &mdash; from columned Alexandrian courtyards to a high-rise in 2045 Tokyo.</p>
+        </div>
+        <div class="housing-card">
+          <h4>Host Family Immersion</h4>
+          <p>Upper-year elective. Live with a vetted family native to your research era. Era-appropriate dress, language, and behavior at all times. The defining experience of many students' education.</p>
+        </div>
+      </div>
+
+      <div class="dorm-grid">
+        <div class="dorm-item">
+          <h5>Hearthstone Hall</h5>
+          <div class="dorm-era">Alexandria, ~280 BCE</div>
+          <div class="dorm-vibe">Scholarly, communal, smells like papyrus and olive oil</div>
+        </div>
+        <div class="dorm-item">
+          <h5>Blackthorn House</h5>
+          <div class="dorm-era">London, 1888</div>
+          <div class="dorm-vibe">Moody, atmospheric, excellent for brooding</div>
+        </div>
+        <div class="dorm-item">
+          <h5>Whitfield Commons</h5>
+          <div class="dorm-era">New York City, 1962</div>
+          <div class="dorm-vibe">Vinyl records in every common room, great diner on the corner</div>
+        </div>
+        <div class="dorm-item">
+          <h5>Zenith Tower</h5>
+          <div class="dorm-era">Tokyo, 2045</div>
+          <div class="dorm-vibe">High-tech minimalism, rooms reconfigure on voice command</div>
+        </div>
+        <div class="dorm-item">
+          <h5>The Longhouse</h5>
+          <div class="dorm-era">Vinland, ~1005 CE</div>
+          <div class="dorm-vibe">Communal sleeping, campfire storytelling, surprisingly cozy</div>
+        </div>
+        <div class="dorm-item">
+          <h5>Solara Terraces</h5>
+          <div class="dorm-era">Nairobi, 2301</div>
+          <div class="dorm-vibe">Open-air living, vertical farms, the best sunrises on campus</div>
+        </div>
+        <div class="dorm-item">
+          <h5>The Undercroft</h5>
+          <div class="dorm-era">Beneath Paris, 1789</div>
+          <div class="dorm-vibe">Converted catacombs. Damp. Candlelit. Beloved.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clubs -->
+    <div class="life-subsection fade-in">
+      <h3>Clubs &amp; Organizations</h3>
+      <div class="clubs-grid">
+        <div class="club-card">
+          <h4>The Paradox Society</h4>
+          <p class="club-motto">"We meet last Thursday."</p>
+          <p>The oldest and most prestigious club. Weekly debates, the annual Grandfather Paradox Open, and the student journal <em>The Mobius Review</em>.</p>
+        </div>
+        <div class="club-card">
+          <h4>Anachronism Appreciation Society</h4>
+          <p class="club-motto">"Deliberately out of time."</p>
+          <p>Mashup Nights where two eras collide. Cross-era fashion shows. The legendary annual Anachronism Ball held in a different era each year.</p>
+        </div>
+        <div class="club-card">
+          <h4>Chrono-Relay League</h4>
+          <p class="club-motto">"The finish line might be in a different century."</p>
+          <p>The Academy's signature sport. Teams of four complete challenges across multiple eras. Blackthorn House has won four of the last six championships.</p>
+        </div>
+        <div class="club-card">
+          <h4>The Temporal Tones</h4>
+          <p class="club-motto">"Every era is a key signature."</p>
+          <p>A cappella and experimental music. Their mashup of Gregorian chant and 2090s synthwave is legendary. Annual Concert Across Time spans three eras in one evening.</p>
+        </div>
+        <div class="club-card">
+          <h4>The Butterfly Watchers</h4>
+          <p class="club-motto">"We track what changes &mdash; and what doesn't."</p>
+          <p>Citizen-science project monitoring timeline fluctuations. Their dataset has flagged anomalies the Loom missed. Three times. The faculty tries not to look embarrassed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traditions -->
+    <div class="life-subsection fade-in">
+      <h3>Traditions &amp; Events</h3>
+      <ul class="traditions-list">
+        <li>
+          <h4>Arrival Day</h4>
+          <p>Your first solo journey through time. A sealed envelope, a date, a place, and the words: "Be there." You are capable. You are not alone.</p>
+        </li>
+        <li>
+          <h4>The Temporal Fair</h4>
+          <p>A weekend festival across all seven era campuses simultaneously. The Grand Parade physically processes through all seven eras &mdash; you step through a Corridor mid-parade and keep marching.</p>
+        </li>
+        <li>
+          <h4>Paradox Day</h4>
+          <p>A full day of sanctioned academic chaos. Campus-wide logic puzzle hunt spanning seven eras. Winners receive the Ouroboros Trophy, cast in an alloy that technically shouldn't exist.</p>
+        </li>
+        <li>
+          <h4>The Reckoning</h4>
+          <p>Final exams. Written theory, practical navigation, and a fieldwork assessment in an unfamiliar era without advance preparation. The night before: the Lantern Send-Off.</p>
+        </li>
+        <li>
+          <h4>The Unmooring</h4>
+          <p>Graduation. Each graduate answers one question: "To what time do you dedicate your service?" Then steps through a Corridor into the era of their choosing. The Hall empties one by one.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 7: THE TEMPORAL OATH ======== -->
+<section id="oath">
+  <div class="container">
+    <div class="fade-in">
+      <div class="oath-label">The Temporal Oath</div>
+      <h2>The Promise Every Student Takes</h2>
+      <hr class="section-divider">
+    </div>
+    <div class="oath-text fade-in">
+      <p>I accept the privilege of moving through time<br>and the weight of responsibility it carries.</p>
+      <p>I will observe with humility,<br>learn with integrity,<br>and walk through every era as a guest.</p>
+      <p>I will not take what is not mine to take,<br>alter what is not mine to alter,<br>or claim what is not mine to claim.</p>
+      <p>I understand that every moment belongs to the people who live it,<br>and I will honor their time as I honor my own.</p>
+      <p class="oath-final">All times are one. I carry them all with care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 8: APPLY CTA ======== -->
+<section id="apply">
+  <div class="container">
+    <div class="fade-in">
+      <h2>Your Timeline Starts Here</h2>
+      <hr class="section-divider">
+    </div>
+    <blockquote class="apply-quote fade-in">
+      "Chronos Academy does not simulate history. It does not approximate it, dramatize it, or sanitize it. We send you there. The past is not a museum. It is a place where people lived, suffered, created, and died &mdash; and where you, if you are serious about understanding, must be willing to do the same. Except the dying. We strongly prefer you avoid the dying."
+      <cite>&mdash; Student Handbook, Section 1.1</cite>
+    </blockquote>
+    <div class="apply-cta-wrap fade-in">
+      <a href="#" class="btn-primary btn-large">Begin Your Application</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== FOOTER ======== -->
+<footer class="site-footer">
+  <div class="footer-logo">Chronos Academy</div>
+  <ul class="footer-links">
+    <li><a href="#origin">Origin</a></li>
+    <li><a href="#eras">Eras</a></li>
+    <li><a href="#faculty">Faculty</a></li>
+    <li><a href="#academics">Academics</a></li>
+    <li><a href="#student-life">Student Life</a></li>
+    <li><a href="#oath">The Oath</a></li>
+    <li><a href="#apply">Apply</a></li>
+  </ul>
+  <hr class="footer-divider">
+  <div class="footer-motto">"Tempus docet. Nos discimus."</div>
+  <div class="footer-motto-en">Time teaches. We learn.</div>
+  <div class="footer-copy">&copy; 2026 Chronos Academy &mdash; Thingvellir, Iceland &mdash; Est. 1953</div>
+</footer>
+
+<!-- ======== JAVASCRIPT ======== -->
+<script>
+(function() {
+  'use strict';
+
+  // ---- Mobile Menu ----
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  mobileLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ---- Sticky Nav Transparency ----
+  const navbar = document.getElementById('navbar');
+  const hero = document.getElementById('hero');
+
+  function handleNavScroll() {
+    if (window.scrollY > hero.offsetHeight * 0.5) {
+      navbar.classList.remove('nav-transparent');
+    } else {
+      navbar.classList.add('nav-transparent');
+    }
+  }
+
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  // ---- Active Nav Link ----
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a:not(.btn-apply-nav)');
+
+  function setActiveLink() {
+    var scrollY = window.scrollY + 120;
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var height = section.offsetHeight;
+      var id = section.getAttribute('id');
+      if (scrollY >= top && scrollY < top + height) {
+        navLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', setActiveLink, { passive: true });
+
+  // ---- Scroll-Triggered Fade-In ----
+  var fadeEls = document.querySelectorAll('.fade-in');
+
+  function checkFadeIn() {
+    var triggerBottom = window.innerHeight * 0.88;
+    fadeEls.forEach(function(el) {
+      var box = el.getBoundingClientRect();
+      if (box.top < triggerBottom) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkFadeIn, { passive: true });
+  window.addEventListener('resize', checkFadeIn, { passive: true });
+  // Initial check
+  checkFadeIn();
+
+  // ---- Smooth scroll offset for fixed nav ----
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = 64;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
