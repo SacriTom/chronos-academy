@@ -4,6 +4,47 @@ All notable changes to this project are documented here. Entries are in reverse 
 
 ---
 
+## [1.0.0] — 2026-03-03
+### Added
+- Deployed live site to GitHub Pages: https://sacritom.github.io/chronos-academy/
+- `build/index.html` — Complete 1,978-line single-page website (65KB, zero dependencies)
+- `index.html` — Root copy for GitHub Pages deployment
+- Full REPORT.md with orchestration flow diagram, metrics, and observations
+
+### Phase 3: Build (Blue Maker)
+- Single-page scrolling site with 8 sections
+- Dark mode, Meridian Gold accents, Google Fonts (Cinzel, Libre Baskerville, Orbitron)
+- 8 campus cards with era-specific colors, 16 faculty cards, 4 degree programs
+- Sticky nav, mobile hamburger, scroll animations, fully responsive
+- Pattern: **Sequential Pipeline** (research > design > build)
+
+### Phase 4: Deployment (Purple Manager)
+- Created GitHub repo: SacriTom/chronos-academy
+- Enabled GitHub Pages on master branch
+- Live URL: https://sacritom.github.io/chronos-academy/
+
+### Status
+- v1.0 complete — site live and shareable
+
+---
+
+## [0.2.0] — 2026-03-03
+### Added
+- Completed Phase 2: Design (parallel fan-out, 4 agents)
+- `design/01-brand-identity.md` — Logo, colors (Deep Basalt/Meridian Gold/Parchment), typography, CSS variables
+- `design/02-site-map.md` — Full site map, single-page MVP layout, content priority matrix
+- `design/03-wireframes.md` — ASCII wireframes for all 8 sections, responsive specs
+- `design/04-campus-visuals.md` — Per-campus color schemes, gradients, card component spec
+
+### Orchestration
+- Pattern: **Parallel Fan-Out** (4 Red-Orange Designers simultaneously)
+- Wall clock time: ~4 minutes for all 4 design docs
+
+### Status
+- Phase 2 complete — ready for build
+
+---
+
 ## [0.1.0] — 2026-03-03
 ### Added
 - Created REPORT.md — orchestration report for class presentation
