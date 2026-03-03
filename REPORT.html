@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronos Academy — Multi-Agent Orchestration Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #1a1a2e;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- Cover Page ---- */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    background: linear-gradient(135deg, #1C1C2E 0%, #2A2A3D 50%, #1C1C2E 100%);
+    color: #F5F0E6;
+    padding: 60px 40px;
+    page-break-after: always;
+  }
+
+  .cover-logo {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #C5952A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 0 30px rgba(197, 149, 42, 0.3);
+  }
+
+  .cover h1 {
+    font-size: 32pt;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    color: #C5952A;
+  }
+
+  .cover .subtitle {
+    font-size: 14pt;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    color: #D1CFC7;
+  }
+
+  .cover-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 11pt;
+    color: #D1CFC7;
+  }
+
+  .cover-meta strong {
+    color: #F5F0E6;
+  }
+
+  .cover-url {
+    margin-top: 48px;
+    padding: 14px 28px;
+    border: 2px solid #C5952A;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11pt;
+    color: #C5952A;
+    letter-spacing: 0.02em;
+  }
+
+  .cover-motto {
+    margin-top: 40px;
+    font-style: italic;
+    font-size: 10pt;
+    color: #6B6B7B;
+  }
+
+  /* ---- Page Content ---- */
+  .page {
+    padding: 0;
+    page-break-before: auto;
+  }
+
+  h2 {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #1C1C2E;
+    border-bottom: 3px solid #C5952A;
+    padding-bottom: 8px;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #2A2A3D;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+  }
+
+  h4 {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #C5952A;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  strong { font-weight: 600; }
+
+  /* ---- Executive Summary Box ---- */
+  .summary-box {
+    background: #f8f6f1;
+    border-left: 4px solid #C5952A;
+    padding: 16px 20px;
+    margin: 16px 0 24px 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ---- Agent Roster ---- */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 16px 0 24px 0;
+  }
+
+  .agent-card {
+    text-align: center;
+    padding: 14px 8px;
+    border-radius: 8px;
+    border: 1px solid #e0ddd5;
+  }
+
+  .agent-card .agent-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin: 0 auto 8px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .agent-card .agent-name { font-weight: 600; font-size: 10pt; }
+  .agent-card .agent-role { font-size: 8pt; color: #6B6B7B; margin-top: 2px; }
+
+  .agent-yellow .agent-icon { background: #C5952A; }
+  .agent-red .agent-icon { background: #D4723C; }
+  .agent-blue .agent-icon { background: #3A6B8C; }
+  .agent-green .agent-icon { background: #4A7C59; }
+  .agent-purple .agent-icon { background: #6B4C8A; }
+
+  /* ---- Tables ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px 0;
+    font-size: 9.5pt;
+  }
+
+  th {
+    background: #1C1C2E;
+    color: #F5F0E6;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e0ddd5;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td {
+    background: #faf9f6;
+  }
+
+  code, .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    background: #f0ede6;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  /* ---- Timeline Steps ---- */
+  .step {
+    border-left: 3px solid #C5952A;
+    padding: 0 0 24px 20px;
+    margin-left: 12px;
+    position: relative;
+    page-break-inside: avoid;
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 2px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #C5952A;
+    border: 2px solid #fff;
+  }
+
+  .step:last-child {
+    border-left-color: transparent;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .step-title {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1C1C2E;
+  }
+
+  .step-time {
+    font-size: 9pt;
+    color: #6B6B7B;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .step-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 8.5pt;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+
+  .badge-agent { background: #f0e8d8; color: #8B6914; }
+  .badge-pattern { background: #e8eef4; color: #2A5A80; }
+  .badge-duration { background: #e8f4e8; color: #2A6B3A; }
+
+  ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  li { margin-bottom: 4px; }
+
+  /* ---- Flow Diagram ---- */
+  .flow-diagram {
+    background: #1C1C2E;
+    color: #F5F0E6;
+    padding: 28px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    page-break-inside: avoid;
+  }
+
+  .flow-diagram h3 {
+    color: #C5952A;
+    margin-top: 0;
+    font-size: 11pt;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .flow-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .flow-box {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 8pt;
+    font-weight: 600;
+    text-align: center;
+    min-width: 55px;
+  }
+
+  .flow-manager { background: #6B4C8A; color: #fff; padding: 10px 24px; font-size: 10pt; }
+  .flow-yellow { background: #C5952A; color: #1C1C2E; }
+  .flow-red { background: #D4723C; color: #fff; }
+  .flow-blue { background: #3A6B8C; color: #fff; }
+  .flow-gate { background: transparent; border: 2px solid #C5952A; color: #C5952A; padding: 6px 20px; font-size: 9pt; }
+  .flow-deploy { background: #4A7C59; color: #fff; padding: 8px 20px; }
+  .flow-arrow { color: #C5952A; font-size: 16pt; }
+  .flow-label { font-size: 7.5pt; color: #6B6B7B; text-align: center; margin-bottom: 4px; }
+
+  /* ---- Observations ---- */
+  .obs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .obs-card {
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid #e0ddd5;
+    page-break-inside: avoid;
+  }
+
+  .obs-card.success { border-left: 4px solid #4A7C59; }
+  .obs-card.challenge { border-left: 4px solid #D4723C; }
+
+  .obs-card h4 { margin-top: 0; font-size: 9.5pt; }
+  .obs-card p { font-size: 9pt; margin-bottom: 0; color: #444; }
+
+  /* ---- Metrics ---- */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0 24px 0;
+  }
+
+  .metric-card {
+    text-align: center;
+    padding: 16px 12px;
+    background: #f8f6f1;
+    border-radius: 8px;
+    border: 1px solid #e0ddd5;
+    page-break-inside: avoid;
+  }
+
+  .metric-value {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #C5952A;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .metric-label {
+    font-size: 8pt;
+    color: #6B6B7B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
+
+  /* ---- File Inventory ---- */
+  .file-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+  }
+
+  /* ---- Conclusion ---- */
+  .conclusion {
+    background: linear-gradient(135deg, #1C1C2E, #2A2A3D);
+    color: #F5F0E6;
+    padding: 28px 24px;
+    border-radius: 10px;
+    margin-top: 28px;
+    page-break-inside: avoid;
+  }
+
+  .conclusion h2 {
+    color: #C5952A;
+    border-bottom-color: #C5952A;
+  }
+
+  .conclusion p { color: #D1CFC7; }
+  .conclusion strong { color: #F5F0E6; }
+
+  .conclusion .live-url {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    border: 2px solid #C5952A;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    color: #C5952A;
+  }
+
+  /* ---- Print ---- */
+  @media print {
+    body { font-size: 10pt; }
+    .cover { min-height: 100vh; }
+    .no-print { display: none; }
+    h2 { margin-top: 24px; }
+    .flow-diagram, .conclusion { -webkit-print-color-adjust: exact; }
+  }
+
+  /* ---- Screen: add padding ---- */
+  @media screen {
+    .page { max-width: 800px; margin: 0 auto; padding: 20px 32px 60px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="cover">
+  <div class="cover-logo">&#9719;</div>
+  <h1>CHRONOS ACADEMY</h1>
+  <div class="subtitle">Multi-Agent Orchestration Report</div>
+  <div class="cover-meta">
+    <span><strong>Course:</strong> Customer Engagement &mdash; CE Masters, Week 7</span>
+    <span><strong>Date:</strong> 3 March 2026</span>
+    <span><strong>Framework:</strong> Octopus Multi-Agent Orchestration OS</span>
+    <span><strong>Author:</strong> SacriTom</span>
+  </div>
+  <div class="cover-url">sacritom.github.io/chronos-academy</div>
+  <div class="cover-motto">"Tempus docet. Nos discimus." &mdash; Time teaches. We learn.</div>
+</div>
+
+<!-- ==================== REPORT BODY ==================== -->
+<div class="page">
+
+  <!-- Executive Summary -->
+  <h2>1. Executive Summary</h2>
+  <div class="summary-box">
+    <p>This report documents the end-to-end process of building <strong>"Chronos Academy"</strong> &mdash; a fictitious time-travel university &mdash; using <strong>Octopus</strong>, a multi-agent orchestration framework. Five specialist AI agents (Researcher, Designer, Maker, Marketer) were coordinated by a Purple Manager agent to deliver a complete creative product: from worldbuilding through website deployment &mdash; <strong>in under 30 minutes</strong>.</p>
+    <p style="margin-bottom:0">The project demonstrates three orchestration patterns: <strong>parallel fan-out</strong> (independent tasks running simultaneously), <strong>sequential pipeline</strong> (dependent phases in order), and <strong>manager-direct execution</strong> (coordination tasks handled by the orchestrator). The final deliverable is a live, responsive single-page website deployed to GitHub Pages.</p>
+  </div>
+
+  <!-- Agent Roster -->
+  <h2>2. Agent Roster</h2>
+  <p>Octopus defines five specialist agent roles. Each operates under a contract specifying its scope, output format, and escalation rules:</p>
+  <div class="agent-grid">
+    <div class="agent-card agent-yellow">
+      <div class="agent-icon">Y</div>
+      <div class="agent-name">Researcher</div>
+      <div class="agent-role">Intelligence &amp; Analysis</div>
+    </div>
+    <div class="agent-card agent-red">
+      <div class="agent-icon">D</div>
+      <div class="agent-name">Designer</div>
+      <div class="agent-role">Solutions &amp; Architecture</div>
+    </div>
+    <div class="agent-card agent-blue">
+      <div class="agent-icon">M</div>
+      <div class="agent-name">Maker</div>
+      <div class="agent-role">Code &amp; Infrastructure</div>
+    </div>
+    <div class="agent-card agent-green">
+      <div class="agent-icon">K</div>
+      <div class="agent-name">Marketer</div>
+      <div class="agent-role">Distribution &amp; Growth</div>
+    </div>
+    <div class="agent-card agent-purple">
+      <div class="agent-icon">P</div>
+      <div class="agent-name">Manager</div>
+      <div class="agent-role">Orchestration</div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <h2>3. Orchestration Timeline</h2>
+
+  <div class="step">
+    <div class="step-header">
+      <span class="step-title">Step 0: Project Setup</span>
+      <span class="step-time">T+0 min</span>
+    </div>
+    <div class="step-meta">
+      <span class="step-badge badge-agent">Purple Manager</span>
+      <span class="step-badge badge-pattern">Setup</span>
+    </div>
+    <ul>
+      <li>Cloned the Octopus orchestration framework from GitHub</li>
+      <li>Created a private copy on personal GitHub (<code>SacriTom/octopus</code>)</li>
+      <li>Selected project concept: "Chronos Academy" (time-travel university)</li>
+      <li>Created project folder with tracking documents: <code>PROJECT_STATE.md</code>, <code>CHANGELOG.md</code>, <code>QUICKSTART.md</code></li>
+    </ul>
+    <p><strong>Output:</strong> Project scaffold with 4-phase plan</p>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <span class="step-title">Step 1: Research &amp; Worldbuilding</span>
+      <span class="step-time">T+5 min</span>
+    </div>
+    <div class="step-meta">
+      <span class="step-badge badge-agent">Yellow Researcher &times;5</span>
+      <span class="step-badge badge-pattern">Parallel Fan-Out</span>
+      <span class="step-badge badge-duration">~4 min</span>
+    </div>
+    <p>Five independent research briefs dispatched simultaneously:</p>
+    <table>
+      <tr><th>#</th><th>Brief</th><th>Output</th><th>Key Deliverables</th></tr>
+      <tr><td>1</td><td>Origin Story &amp; Charter</td><td><code>research/01-origin-story.md</code></td><td>Founding lore (1923&ndash;1953), Dr. Elara Voss, the Meridian device, 7 charter principles</td></tr>
+      <tr><td>2</td><td>Eras &amp; Campuses</td><td><code>research/02-eras-and-campuses.md</code></td><td>8 era-campuses spanning 68M BCE to 22nd century, across 4 continents</td></tr>
+      <tr><td>3</td><td>Faculty Roster</td><td><code>research/03-faculty-roster.md</code></td><td>16 historical figures as professors across 6 departments</td></tr>
+      <tr><td>4</td><td>Course Catalog</td><td><code>research/04-course-catalog.md</code></td><td>22 courses, 6 departments, 4 degree programs</td></tr>
+      <tr><td>5</td><td>Student Life</td><td><code>research/05-student-life.md</code></td><td>Housing, 9 clubs, traditions, temporal ethics, safety protocols</td></tr>
+    </table>
+    <p><strong>Why parallel:</strong> All five tasks were independent &mdash; no agent needed another's output. This is the textbook case for fan-out orchestration.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <span class="step-title">Step 2: Design</span>
+      <span class="step-time">T+10 min</span>
+    </div>
+    <div class="step-meta">
+      <span class="step-badge badge-agent">Red-Orange Designer &times;4</span>
+      <span class="step-badge badge-pattern">Parallel Fan-Out</span>
+      <span class="step-badge badge-duration">~4 min</span>
+    </div>
+    <p>Four design briefs dispatched simultaneously, each receiving the research output:</p>
+    <table>
+      <tr><th>#</th><th>Brief</th><th>Output</th><th>Key Deliverables</th></tr>
+      <tr><td>1</td><td>Brand Identity</td><td><code>design/01-brand-identity.md</code></td><td>Logo concept, color palette (Deep Basalt / Meridian Gold / Parchment + 8 campus accents), typography, CSS custom properties</td></tr>
+      <tr><td>2</td><td>Site Map &amp; IA</td><td><code>design/02-site-map.md</code></td><td>Single-page MVP layout (8 sections), content priority matrix, user journeys</td></tr>
+      <tr><td>3</td><td>Wireframes</td><td><code>design/03-wireframes.md</code></td><td>ASCII wireframes for all 8 sections, responsive specs, interaction notes</td></tr>
+      <tr><td>4</td><td>Campus Visuals</td><td><code>design/04-campus-visuals.md</code></td><td>Per-campus color schemes, CSS gradients, card component spec, timeline visual</td></tr>
+    </table>
+    <p><strong>Quality gate:</strong> All four docs delivered consistent specs. CSS variables from doc 01 were directly consumable by the build phase.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <span class="step-title">Step 3: Build</span>
+      <span class="step-time">T+15 min</span>
+    </div>
+    <div class="step-meta">
+      <span class="step-badge badge-agent">Blue Maker &times;1</span>
+      <span class="step-badge badge-pattern">Sequential Pipeline</span>
+      <span class="step-badge badge-duration">~6 min</span>
+    </div>
+    <p><strong>Input:</strong> 5 research docs + 4 design docs (9 files total)<br>
+    <strong>Output:</strong> <code>build/index.html</code> &mdash; 1,978 lines, 65KB, single self-contained HTML</p>
+    <ul>
+      <li>8-section single-page scrolling website with all content from research</li>
+      <li>Dark mode default with Meridian Gold accents</li>
+      <li>8 campus cards with era-specific accent colors</li>
+      <li>16 faculty cards with real historical quotes</li>
+      <li>4 degree program cards, student life highlights</li>
+      <li>Sticky nav, mobile hamburger, scroll-triggered animations</li>
+      <li>Fully responsive (desktop, tablet, mobile)</li>
+    </ul>
+    <p><strong>Why sequential:</strong> The build required complete research AND design specs as input &mdash; a strict dependency chain.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <span class="step-title">Step 4: Deployment</span>
+      <span class="step-time">T+22 min</span>
+    </div>
+    <div class="step-meta">
+      <span class="step-badge badge-agent">Purple Manager</span>
+      <span class="step-badge badge-pattern">Manager Direct</span>
+      <span class="step-badge badge-duration">~3 min</span>
+    </div>
+    <ul>
+      <li>Created GitHub repository: <code>SacriTom/chronos-academy</code></li>
+      <li>Pushed all project files (research, design, build, tracking docs)</li>
+      <li>Enabled GitHub Pages on <code>master</code> branch</li>
+      <li>Verified live deployment</li>
+    </ul>
+    <p><strong>Live URL:</strong> <code>https://sacritom.github.io/chronos-academy/</code></p>
+  </div>
+
+  <!-- Flow Diagram -->
+  <h2>4. Orchestration Flow</h2>
+  <div class="flow-diagram">
+    <h3>Multi-Agent Orchestration Pipeline</h3>
+
+    <div class="flow-label">ORCHESTRATOR</div>
+    <div class="flow-row">
+      <div class="flow-box flow-manager">PURPLE MANAGER</div>
+    </div>
+    <div class="flow-row"><span class="flow-arrow">&darr;</span></div>
+
+    <div class="flow-row" style="gap: 40px;">
+      <div style="text-align:center">
+        <div class="flow-label">PHASE 1: RESEARCH &mdash; Parallel Fan-Out</div>
+        <div style="display:flex; gap:4px; justify-content:center;">
+          <div class="flow-box flow-yellow">Y1</div>
+          <div class="flow-box flow-yellow">Y2</div>
+          <div class="flow-box flow-yellow">Y3</div>
+          <div class="flow-box flow-yellow">Y4</div>
+          <div class="flow-box flow-yellow">Y5</div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-row"><span class="flow-arrow">&darr;</span></div>
+
+    <div class="flow-row" style="gap: 40px;">
+      <div style="text-align:center">
+        <div class="flow-label">PHASE 2: DESIGN &mdash; Parallel Fan-Out</div>
+        <div style="display:flex; gap:4px; justify-content:center;">
+          <div class="flow-box flow-red">D1</div>
+          <div class="flow-box flow-red">D2</div>
+          <div class="flow-box flow-red">D3</div>
+          <div class="flow-box flow-red">D4</div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-row"><span class="flow-arrow">&darr;</span></div>
+
+    <div class="flow-row">
+      <div class="flow-box flow-gate">QUALITY GATE</div>
+    </div>
+    <div class="flow-row"><span class="flow-arrow">&darr;</span></div>
+
+    <div class="flow-label">PHASE 3: BUILD &mdash; Sequential</div>
+    <div class="flow-row">
+      <div class="flow-box flow-blue" style="padding: 10px 28px;">BLUE MAKER</div>
+    </div>
+    <div class="flow-row"><span class="flow-arrow">&darr;</span></div>
+
+    <div class="flow-label">PHASE 4: DEPLOY</div>
+    <div class="flow-row">
+      <div class="flow-box flow-deploy">LIVE SITE</div>
+    </div>
+
+    <div style="margin-top: 16px; text-align: center; font-size: 7.5pt; color: #6B6B7B;">
+      Y = Yellow Researcher &nbsp;&bull;&nbsp; D = Red-Orange Designer &nbsp;&bull;&nbsp; Blue = Maker &nbsp;&bull;&nbsp; Purple = Manager
+    </div>
+  </div>
+
+  <!-- Patterns -->
+  <h2>5. Orchestration Patterns Used</h2>
+  <table>
+    <tr><th>Pattern</th><th>Phase</th><th>Description</th></tr>
+    <tr><td><strong>Parallel Fan-Out</strong></td><td>Phase 1 (Research)</td><td>5 independent researcher agents dispatched simultaneously</td></tr>
+    <tr><td><strong>Parallel Fan-Out</strong></td><td>Phase 2 (Design)</td><td>4 independent designer agents dispatched simultaneously</td></tr>
+    <tr><td><strong>Sequential Pipeline</strong></td><td>Phase 2 &rarr; 3</td><td>Research feeds Design feeds Build &mdash; each phase depends on the previous</td></tr>
+    <tr><td><strong>Single Agent</strong></td><td>Phase 3 (Build)</td><td>One Maker agent consumed all 9 input docs and built the complete site</td></tr>
+    <tr><td><strong>Manager Direct</strong></td><td>Phase 4 (Deploy)</td><td>Purple Manager handled deployment directly (coordination, not specialist work)</td></tr>
+  </table>
+
+  <!-- Metrics -->
+  <h2>6. Project Metrics</h2>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-value">10</div>
+      <div class="metric-label">Agents Spawned</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">2</div>
+      <div class="metric-label">Parallel Batches</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">3</div>
+      <div class="metric-label">Sequential Handoffs</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">14</div>
+      <div class="metric-label">Files Created</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">65KB</div>
+      <div class="metric-label">Site Size</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">~25m</div>
+      <div class="metric-label">Total Elapsed Time</div>
+    </div>
+  </div>
+
+  <!-- Observations -->
+  <h2>7. Key Observations</h2>
+
+  <h3>What Worked Well</h3>
+  <div class="obs-grid">
+    <div class="obs-card success">
+      <h4>Parallel fan-out reduced elapsed time</h4>
+      <p>5 research briefs in ~4 min, 4 design docs in ~4 min (vs ~15 min and ~12 min sequentially). A 3&times; speedup.</p>
+    </div>
+    <div class="obs-card success">
+      <h4>Clear spawn templates</h4>
+      <p>Each agent received a structured brief with TASK, OUTPUT, FORMAT, SCOPE, and ESCALATE rules from the Octopus framework.</p>
+    </div>
+    <div class="obs-card success">
+      <h4>Scoped autonomy</h4>
+      <p>Agents stayed in their lane: researchers didn't design, designers didn't build. Scope boundaries prevented drift.</p>
+    </div>
+    <div class="obs-card success">
+      <h4>Design tokens bridged phases</h4>
+      <p>The brand identity doc included ready-to-use CSS custom properties that the Maker agent consumed directly. Zero translation loss.</p>
+    </div>
+  </div>
+
+  <h3>Challenges &amp; Lessons</h3>
+  <div class="obs-grid">
+    <div class="obs-card challenge">
+      <h4>Cross-reference consistency</h4>
+      <p>Parallel agents can't coordinate, so faculty names and campus details varied slightly between docs. The Maker reconciled during build.</p>
+    </div>
+    <div class="obs-card challenge">
+      <h4>Context window pressure</h4>
+      <p>The Maker agent needed 9 documents (~100K tokens) as input. This required single-agent sequential rather than parallel.</p>
+    </div>
+    <div class="obs-card challenge">
+      <h4>GitHub Pages path limitation</h4>
+      <p>Pages only serves from <code>/</code> or <code>/docs</code>, not <code>/build</code>. Required an extra copy step during deployment.</p>
+    </div>
+    <div class="obs-card challenge">
+      <h4>The Manager principle holds</h4>
+      <p>"If you're doing the work, you're not managing." Purple orchestrated 10 agents and only executed deployment directly.</p>
+    </div>
+  </div>
+
+  <!-- File Inventory -->
+  <h2>8. File Inventory</h2>
+  <table class="file-table">
+    <tr><th>File</th><th>Purpose</th><th>Phase</th><th>Agent</th></tr>
+    <tr><td>PROJECT_STATE.md</td><td>Plan &amp; progress tracking</td><td>Setup</td><td>Purple Manager</td></tr>
+    <tr><td>CHANGELOG.md</td><td>Version-controlled change log</td><td>Setup</td><td>Purple Manager</td></tr>
+    <tr><td>QUICKSTART.md</td><td>Session resume prompt</td><td>Setup</td><td>Purple Manager</td></tr>
+    <tr><td>REPORT.md</td><td>Orchestration report (source)</td><td>All</td><td>Purple Manager</td></tr>
+    <tr><td>research/01-origin-story.md</td><td>Founding lore &amp; charter</td><td>Research</td><td>Yellow Researcher</td></tr>
+    <tr><td>research/02-eras-and-campuses.md</td><td>8 era-campuses</td><td>Research</td><td>Yellow Researcher</td></tr>
+    <tr><td>research/03-faculty-roster.md</td><td>16-professor faculty</td><td>Research</td><td>Yellow Researcher</td></tr>
+    <tr><td>research/04-course-catalog.md</td><td>22 courses, 4 degrees</td><td>Research</td><td>Yellow Researcher</td></tr>
+    <tr><td>research/05-student-life.md</td><td>Student life &amp; culture</td><td>Research</td><td>Yellow Researcher</td></tr>
+    <tr><td>design/01-brand-identity.md</td><td>Brand system &amp; CSS tokens</td><td>Design</td><td>Red-Orange Designer</td></tr>
+    <tr><td>design/02-site-map.md</td><td>Site architecture &amp; IA</td><td>Design</td><td>Red-Orange Designer</td></tr>
+    <tr><td>design/03-wireframes.md</td><td>Section wireframes</td><td>Design</td><td>Red-Orange Designer</td></tr>
+    <tr><td>design/04-campus-visuals.md</td><td>Campus visual specs</td><td>Design</td><td>Red-Orange Designer</td></tr>
+    <tr><td>build/index.html</td><td>Complete website (65KB)</td><td>Build</td><td>Blue Maker</td></tr>
+    <tr><td>index.html</td><td>GitHub Pages deployment copy</td><td>Deploy</td><td>Purple Manager</td></tr>
+  </table>
+
+  <!-- Conclusion -->
+  <div class="conclusion">
+    <h2>9. Conclusion</h2>
+    <p>This project demonstrated multi-agent orchestration using the Octopus framework to build a complete creative product &mdash; from zero to a live, deployed website &mdash; in under 30 minutes.</p>
+    <p>The key orchestration insight: <strong>use parallel fan-out for independent work, sequential pipelines for dependent work, and keep the Manager focused on coordination, not execution.</strong></p>
+    <p>Ten specialist agents collaborated across four phases, producing 14 files and a polished, responsive website &mdash; all tracked through structured handoffs, quality gates, and a versioned changelog.</p>
+    <p style="margin-top: 16px;">The live site is available at:</p>
+    <div class="live-url">https://sacritom.github.io/chronos-academy/</div>
+    <p style="margin-top: 20px; font-size: 9pt; color: #6B6B7B; margin-bottom: 0;">
+      Report prepared by Purple Manager agent &bull; Octopus Multi-Agent Orchestration OS &bull; March 2026
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
