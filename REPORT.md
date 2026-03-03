@@ -31,8 +31,7 @@ This report documents the end-to-end process of building "Chronos Academy" using
 **Agent**: Purple Manager
 **Action**: Project initialization and scaffolding
 
-- Cloned the Octopus orchestration framework from GitHub
-- Created a private copy on personal GitHub (SacriTom/octopus)
+- Installed Octopus and invoked the workflow
 - Selected project concept: "Chronos Academy" (time-travel university)
 - Created project folder with three tracking documents:
   - `PROJECT_STATE.md` — 4-phase plan with checklists
